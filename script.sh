@@ -7,41 +7,6 @@
 # Once you have tested out the script and verified it's working, commit it to a branch: <your_name>
 
 
-### Task 1
-# echo The language passed as argument is $1
-# echo User output:
-
-# gcc $2
-# ./a.out < input1.txt
-
-# echo Expected output:
-# cat output1.txt
-
-# rm ./a.out
-
-
-
-### Task 2
-# for file in $*
-# do
-# 	echo "Running $file on test cases"
-# 	for i in 1 2 3
-# 	do
-# 		echo "Running test case $i:"
-# 		gcc file$i.c
-# 		echo "User output:"
-# 		./a.out < input$i.txt
-# 		echo "Expected output:"
-# 		cat output$i.txt
-# 		echo "------------------------------------------"
-# 	done
-# done
-
-# rm ./a.out
-
-
-
-
 ### Task 3
 for file in $*
 do
@@ -68,3 +33,35 @@ do
 	done
 	rm ./file.out
 done
+
+
+### Task 2
+# for file in $*
+# do
+# 	echo "Running $file on test cases"
+# 	for i in 1 2 3
+# 	do
+# 		echo "Running test case $i:"
+# 		gcc file$i.c
+# 		echo "User output:"
+# 		./a.out < input$i.txt
+# 		echo "Expected output:"
+# 		cat output$i.txt
+# 		echo "------------------------------------------"
+# 	done
+# done
+
+# rm ./a.out
+
+
+### Task 1
+# echo The language passed as argument is $1
+# echo User output:
+
+# gcc $2
+# ./a.out < input1.txt
+
+# echo Expected output:
+# cat output1.txt
+
+# rm ./a.out

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-### Done Task 3
+### Done Task 4
 for file in $*
 do
 	gcc $file -o file.out
@@ -8,20 +8,30 @@ do
 	for i in 1 2 3
 	do
 		echo "Running test case $i:"
-		# echo "./file.out < input$i.txt > user_output$i.txt 2> /dev/null"
-		./file.out < input$i.txt > user_output$i.txt 2> /dev/null
+		./file.out < input$i.txt > user_output$i.txt 2> $file_error$i.txt
+		exit_code=$?
 
-		passed=$(diff output$i.txt user_output$i.txt)
-		if [[ "$passed" == "" ]]
+		if [[ $exit_code -eq 0 ]]
 		then
-			echo "Test case $i passed"
+			echo "Code ran without run-time errors"
+
+			passed=$(diff output$i.txt user_output$i.txt)
+			if [[ "$passed" == "" ]]
+			then
+				echo "Test case $i passed"
+			else
+				echo "Test case $i failed"
+				echo "User output:"
+				cat user_output$i.txt
+				echo "Expected output:"
+				cat output$i.txt
+			fi
+
 		else
-			echo "Test case $i failed"
-			echo "User output:"
-			cat user_output$i.txt
-			echo "Expected output:"
-			cat output$i.txt
+			echo "Code has run-time errors"
+			cat $file_error$i.txt
 		fi
+
 		echo "------------------------------------------"
 	done
 	rm ./file.out

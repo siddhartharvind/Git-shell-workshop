@@ -7,12 +7,7 @@ int main() {
 
     while (fgets(line, sizeof(line), stdin) != NULL) {
         if (sscanf(line, "%d %d", &num1, &num2) == 2) {
-            int sum = num1;
-            if (sum != num1+ num2){
-                fprintf(stderr, "ERROR: User defined error.");
-                fprintf(stderr, "C program programmatically threw an error. \nSomething must have gone wrong in the program according to application logic.\n");
-                exit(1);
-            }
+            int sum = num1 + num2;
             printf("%d\n", sum);
         } else {
             fprintf(stderr, "Error: Invalid input format\n");

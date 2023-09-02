@@ -7,7 +7,7 @@ int main() {
 
     while (fgets(line, sizeof(line), stdin) != NULL) {
         if (sscanf(line, "%d %d", &num1, &num2) == 2) {
-            int sum = num1 + num2;
+            int sum = num1 * num2;
             printf("%d\n", sum);
         } else {
             fprintf(stderr, "Error: Invalid input format\n");

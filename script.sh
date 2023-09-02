@@ -8,14 +8,30 @@ do
 
 	for i in $(seq 3)
 	do
-		echo "Running test case $i:"
-		echo "User output:"
-		python3 $file < input$i.txt
-		echo "Expected output:"
-		cat output$i.txt
-		echo "--------------------------------"
-	done
+		input_file=input$i.txt
+		exp_output_file=output$i.txt
+		user_output_file=user_${exp_output_file}
+		
 
+		echo "Running test case $i:"
+		python3 $file < $input_file > $user_output_file
+		passed=$(diff $user_output_file $exp_output_file)
+
+		if [[ "$passed" == "" ]]
+		then
+			echo "Test case $i passed"
+		else
+			echo "Test case $i failed"
+			echo "User output:"
+			cat $user_output_file
+			echo "Expected output:"
+			cat $exp_output_file
+		fi
+
+		echo "--------------------------------"
+		rm ./$user_output_file
+
+	done
 done
 
 echo "The language passed as argument is $language"

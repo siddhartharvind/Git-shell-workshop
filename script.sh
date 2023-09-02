@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-files=$*
+language=$1
+echo "The language passed as argument is $language"
+
+if [[ "$language" != "Python" ]]
+then
+	echo "Invalid language"
+	exit 1
+else
+	echo "Language verified"
+fi
+
+files=${*:2}
 
 for file in $files
 do
